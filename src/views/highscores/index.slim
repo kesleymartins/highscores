@@ -1,0 +1,23 @@
+table 
+    thead 
+        th Username
+        th Game
+        th Score
+    tbody
+        - @highscores.each do |hishscore|
+            tr 
+                td
+                    - if hishscore.username
+                        span #{hishscore.username}
+                    - else
+                        i No username
+                td
+                    - if hishscore.game
+                        span #{hishscore.game}
+                    - else
+                        i No game
+                td
+                    - if hishscore.score
+                        span #{hishscore.score}
+                    - else
+                        i No score
