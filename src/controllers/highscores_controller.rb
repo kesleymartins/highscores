@@ -1,6 +1,4 @@
 class HighscoresController < ApplicationController
-    helpers Sinatra::ContentFor
-
     configure do
         set :views, "src/views/highscores"
     end
