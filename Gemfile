@@ -11,8 +11,8 @@ gem 'mongoid', '~> 8.0', '>= 8.0.3'
 # Template
 gem 'slim', '~> 4.1'
 
-# protect user
-gem 'shield', '~> 2.1', '>= 2.1.1'
+# hash password
+gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
 # Server settings
 gem 'rerun', '~> 0.14.0'
