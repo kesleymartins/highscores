@@ -11,8 +11,12 @@ header
         .navbar-end
             .navbar-item
                 .buttons
-                    a.button.is-dark.is-outlined.is-inverted href="/sessions/new" Entrar
-                    a.button.is-light href="/users/new" Criar uma conta
+                    - if @current_user
+                        a.button.is-dark = @current_user.username
+                        a.button.is-light href="/sessions/logout" Sair
+                    - else
+                        a.button.is-dark.is-outlined.is-inverted href="/sessions/new" Entrar
+                        a.button.is-light href="/users/new" Criar uma conta
 
 main.container.py-6
     - flash.keys.each do |type|
