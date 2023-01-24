@@ -8,5 +8,15 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
+        user = User.new(username: params[:username])
+        user.password = params[:password]
+
+        if user.save
+            session[:user_id] = user.id
+            redirect '/'
+        else
+            flash[:error] = "Não foi possível criar a conta"
+            redirect '/users/new'
+        end
     end
 end
