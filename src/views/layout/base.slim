@@ -11,8 +11,16 @@ header
         .navbar-end
             .navbar-item
                 .buttons
-                    a.button.is-dark.is-outlined.is-inverted href="/sessions/new" Login
-                    a.button.is-light href="/users/new" Register
-                    
+                    a.button.is-dark.is-outlined.is-inverted href="/sessions/new" Entrar
+                    a.button.is-light href="/users/new" Criar uma conta
+
 main.container.py-6
+    - flash.keys.each do |type|
+        div class="message #{type == :error ? "is-danger" : "is-success"}"
+            .message-header
+                p
+                button.delete
+            .message-body 
+                = flash[type]
+
     == yield
