@@ -9,7 +9,7 @@ gem 'sinatra', '~> 3.0', '>= 3.0.5'
 gem 'mongoid', '~> 8.0', '>= 8.0.3'
 
 # Template
-gem 'slim', '~> 4.1'
+gem 'haml', '~> 6.1', '>= 6.1.1'
 
 # hash password
 gem 'bcrypt', '~> 3.1', '>= 3.1.18'
