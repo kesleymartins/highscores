@@ -2,6 +2,7 @@ class ApplicationController < Sinatra::Base
     configure do
         register Sinatra::Flash
         enable :sessions
+        set :haml, { escape_html: false }
     end
 
     before do
