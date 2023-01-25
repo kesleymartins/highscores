@@ -6,6 +6,6 @@ class HighscoresController < ApplicationController
     get '/highscores' do
         @highscores = Highscore.all
 
-        slim :index, layout: layout_path('base')
+        haml :index, layout: layout_path('application')
     end
 end
