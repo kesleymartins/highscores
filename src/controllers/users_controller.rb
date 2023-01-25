@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/new' do
-        slim :new, layout: layout_path('base')
+        haml :new, layout: layout_path('application')
     end
 
     post '/users' do

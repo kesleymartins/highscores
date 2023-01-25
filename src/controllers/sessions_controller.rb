@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     end
     
     get '/sessions/new' do
-        slim :new, layout: layout_path('base')
+        haml :new, layout: layout_path('application')
     end
 
     post '/sessions' do

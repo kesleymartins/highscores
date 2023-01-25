@@ -1,0 +1,38 @@
+%head 
+    %title Highscores
+    %link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css")
+%body
+    %header
+        %nav.navbar.is-dark
+            .container
+                .navbar-brand.is-fixed-top
+                    .navbar-item
+                        %h1
+                            %a{href: "/", class: "has-text-white"} Highscores
+                .navbar-end
+                    .navbar-item
+                        .buttons
+                            - if @current_user
+                                %a.button.is-dark 
+                                    = @current_user.username
+                                %a(href="/sessions/logout").button.is-light  Sair
+                            - else
+                                %a{href: "/sessions/new", class: "button is-dark is-outlined is-inverted"} Entrar
+                                %a{href: "/users/new", class: "button is-light"} Criar conta
+
+    %main.section
+        .container.pt-6
+            - flash.keys.each do |type|
+                %div{class: "message #{type == :error ? "is-danger" : "is-success"}"}
+                    .message-header
+                        %p 
+                            = flash[type]
+                        %button.delete
+        .container           
+            = yield
+
+    %footer.section.footer
+        .content.has-text-centered
+            %p
+                = "Highscores by kesley - #{Date.current.strftime("%Y")}"
+
