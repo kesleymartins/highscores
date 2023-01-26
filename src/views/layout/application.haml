@@ -15,19 +15,26 @@
                             - if @current_user
                                 %a.button.is-dark 
                                     = @current_user.username
-                                %a(href="/sessions/logout").button.is-light  Sair
+                                %a{href: "/sessions/logout", class: "button is-light"} Sair
                             - else
                                 %a{href: "/sessions/new", class: "button is-dark is-outlined is-inverted"} Entrar
                                 %a{href: "/users/new", class: "button is-light"} Criar conta
 
-    %main.section
-        .container.pt-6
+    %main.section.py-5
+        .container
             - flash.keys.each do |type|
-                %div{class: "message #{type == :error ? "is-danger" : "is-success"}"}
+                %div{class: "mb-5 message #{type == :error ? "is-danger" : "is-success"}"}
                     .message-header
-                        %p 
-                            = flash[type]
+                        - if flash[:error]
+                            %p Ocorreu um erro.
+                        - else
+                            %p Sucesso!.
                         %button.delete
+                    .message-body
+                        %ul 
+                            - flash[type].each do |message|
+                                %li 
+                                    = message
         .container           
             = yield
 
