@@ -27,14 +27,11 @@
                     .message-header
                         - if flash[:error]
                             %p Ocorreu um erro.
-                        - else
+                        - elsif flash[:notice]
                             %p Sucesso!.
                         %button.delete
                     .message-body
-                        %ul 
-                            - flash[type].each do |message|
-                                %li 
-                                    = message
+                        = flash[type]
         .container           
             = yield
 
