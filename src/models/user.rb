@@ -4,9 +4,8 @@ class User
     field :username, type: String
     field :password, type: String
     
-    validates :username, presence: true
+    validates :username, presence: true, uniqueness: true
     validates :password, presence: true, confirmation: true
-    validates_uniqueness_of :username
 
     before_create :hash_password
 
