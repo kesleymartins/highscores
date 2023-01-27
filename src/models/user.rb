@@ -1,7 +1,6 @@
 class User
     include Mongoid::Document
-    include BCrypt
-
+    
     field :username, type: String
     field :password, type: String
     
