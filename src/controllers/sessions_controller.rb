@@ -8,16 +8,17 @@ class SessionsController < ApplicationController
     end
 
     post '/sessions' do
-        user = User.where(username: params[:username]).first
-        
-        unless user
-            flash[:error] = "Username não foi encontrado."
+        credential = Credential.new(params)
+
+        if credential.invalid?
+            flash[:error] = "Credenciais inválidas!"
             redirect '/sessions/new'
         end
 
+        user = User.where(username: params[:username]).first
+        
         if user.authenticate(params[:password])
             session[:user_id] = user.id
-            flash[:notice] = "Login realizado com sucesso!"
             redirect '/'
         else
             flash[:error] = "Credenciais Inválidas!"
