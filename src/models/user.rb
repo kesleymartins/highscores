@@ -1,6 +1,6 @@
 class User
     include Mongoid::Document
-    
+
     field :username, type: String
     field :password, type: String
     
@@ -9,6 +9,10 @@ class User
     validates_uniqueness_of :username
 
     before_create :hash_password
+
+    def authenticate(password)
+        Argon2::Password.verify_password(password, self.password)
+    end
 
     protected
 
