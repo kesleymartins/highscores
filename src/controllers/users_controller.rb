@@ -8,14 +8,13 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        user = User.new(username: params[:username])
-        user.password = params[:password]
+        user = User.new(params)
 
         if user.save
             session[:user_id] = user.id
             redirect '/'
         else
-            flash[:error] = user.errors.full_messages
+            flash[:error] = "Não foi possível criar o usuário"
             redirect '/users/new'
         end
     end
