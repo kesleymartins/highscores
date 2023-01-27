@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
             redirect '/sessions/new'
         end
 
-        if user.password == params[:password]
+        if Argon2::Password.verify_password(params[:password], user.password)
             session[:user_id] = user.id
             flash[:notice] = "Login realizado com sucesso!"
             redirect '/'
