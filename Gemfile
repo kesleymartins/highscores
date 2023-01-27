@@ -12,7 +12,7 @@ gem 'mongoid', '~> 8.0', '>= 8.0.3'
 gem 'haml', '~> 6.1', '>= 6.1.1'
 
 # hash password
-gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+gem 'argon2', '~> 2.2'
 
 # Server settings
 gem 'rerun', '~> 0.14.0'

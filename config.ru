@@ -1,7 +1,7 @@
 require "sinatra"
 require "mongoid"
 require "require_all"
-require "bcrypt"
+require 'argon2'
 require "sinatra/flash"
 require 'haml'
 
