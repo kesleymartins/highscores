@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
+ruby ">=3.2"
+
 # DSL
 gem 'sinatra', '~> 3.0', '>= 3.0.5'
 

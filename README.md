@@ -21,7 +21,7 @@
 
 #### Dependências
 ---
-- [ruby](https://www.ruby-lang.org) 3.2.0
+- [ruby](https://www.ruby-lang.org) 3.2
 - [mongodb](https://www.mongodb.com)
 
 
