@@ -1,21 +1,21 @@
 class User
-    include Mongoid::Document
+  include Mongoid::Document
 
-    field :username, type: String
-    field :password, type: String
-    
-    validates :username, presence: true, uniqueness: true
-    validates :password, presence: true, confirmation: true
+  field :username, type: String
+  field :password, type: String
 
-    before_create :hash_password
+  validates :username, presence: true, uniqueness: true
+  validates :password, presence: true, confirmation: true
 
-    def authenticate(password)
-        Argon2::Password.verify_password(password, self.password)
-    end
+  before_create :hash_password
 
-    protected
+  def authenticate(password)
+    Argon2::Password.verify_password(password, self.password)
+  end
 
-    def hash_password
-        self.password = Argon2::Password.create(self.password)
-    end
+  protected
+
+  def hash_password
+    self.password = Argon2::Password.create(self.password)
+  end
 end

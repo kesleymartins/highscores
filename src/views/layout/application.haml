@@ -1,42 +1,45 @@
 %head 
-    %title Highscores
-    %link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css")
+  %title Highscores
+  %link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css")
+
 %body
-    %header
-        %nav.navbar.is-dark
-            .container
-                .navbar-brand.is-fixed-top
-                    .navbar-item
-                        %h1
-                            %a{href: "/", class: "has-text-white"} Highscores
-                .navbar-end
-                    .navbar-item
-                        .buttons
-                            - if @current_user
-                                %a.button.is-dark 
-                                    = @current_user.username
-                                %a{href: "/sessions/logout", class: "button is-light"} Sair
-                            - else
-                                %a{href: "/sessions/new", class: "button is-dark is-outlined is-inverted"} Entrar
-                                %a{href: "/users/new", class: "button is-light"} Criar conta
+  %header
+    %nav.navbar.is-dark
+      .container
+        .navbar-brand.is-fixed-top
+            .navbar-item
+              %h1
+                %a{href: "/", class: "has-text-white"} Highscores
+        .navbar-end
+          .navbar-item
+            .buttons
+              - if @current_user
+                %a.button.is-dark 
+                  = @current_user.username
+                %a{href: "/sessions/logout", class: "button is-light"} Sair
+              - else
+                %a{href: "/sessions/new", class: "button is-dark is-outlined is-inverted"} Entrar
+                %a{href: "/users/new", class: "button is-light"} Criar conta
 
-    %main.section.py-5
-        .container
-            - flash.keys.each do |type|
-                %div{class: "mb-5 message #{type == :error ? "is-danger" : "is-success"}"}
-                    .message-header
-                        - if flash[:error]
-                            %p Ocorreu um erro.
-                        - elsif flash[:notice]
-                            %p Sucesso!.
-                        %button.delete
-                    .message-body
-                        = flash[type]
-        .container           
-            = yield
+  %main.section.py-5
+    .container
+        - flash.keys.each do |type|
+          %div{class: "mb-5 message #{type == :error ? "is-danger" : "is-success"}"}
+            .message-header
+              - if flash[:error]
+                %p Ocorreu um erro.
+              - elsif flash[:notice]
+                %p Sucesso!.
+              %button.delete
 
-    %footer.section.footer
-        .content.has-text-centered
-            %p
-                = "Highscores by kesley - #{Date.current.strftime("%Y")}"
+            .message-body
+              = flash[type]
+
+    .container           
+      = yield
+
+  %footer.section.footer
+    .content.has-text-centered
+      %p
+        = "Highscores by kesley - #{Date.current.strftime("%Y")}"
 

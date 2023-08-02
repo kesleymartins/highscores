@@ -1,33 +1,33 @@
 class SessionsController < ApplicationController
-    configure do
-        set :views, "src/views/sessions"
-    end
-    
-    get '/sessions/new' do
-        haml :new, layout: layout_path('application')
-    end
+  configure do
+    set :views, "src/views/sessions"
+  end
 
-    post '/sessions' do
-        credential = Credential.new(params)
+  get '/sessions/new' do
+    haml :new, layout: layout_path('application')
+  end
 
-        if credential.invalid?
-            flash[:error] = "Credenciais inválidas!"
-            redirect '/sessions/new'
-        end
+  post '/sessions' do
+    credential = Credential.new(params)
 
-        user = User.where(username: params[:username]).first
-        
-        if user.authenticate(params[:password])
-            session[:user_id] = user.id
-            redirect '/'
-        else
-            flash[:error] = "Credenciais Inválidas!"
-            redirect '/sessions/new'
-        end
+    if credential.invalid?
+      flash[:error] = "Credenciais inválidas!"
+      redirect '/sessions/new'
     end
 
-    get '/sessions/logout' do
-        session.clear
-        redirect '/'
+    user = User.where(username: params[:username]).first
+
+    if user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      flash[:error] = "Credenciais Inválidas!"
+      redirect '/sessions/new'
     end
+  end
+
+  get '/sessions/logout' do
+    session.clear
+    redirect '/'
+  end
 end
